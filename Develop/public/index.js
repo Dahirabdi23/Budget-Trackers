@@ -1,11 +1,13 @@
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").then(reg =>{
+      console.log("Service worker present and accounted for!", reg);
+    });
+  });
+}
+
 let transactions = [];
 let myChart;
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker registered successfully."))
-    .catch(error => console.log("Service Worker registration failed:", error));
-};
 
 fetch("/api/transaction")
   .then(response => {
